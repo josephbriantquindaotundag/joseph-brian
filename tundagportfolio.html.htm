@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #bbc4d3 0%, #b49a92 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #a9f036;
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(110, 7, 7, 0.1);
+        }
+
+        nav a {
+            color: #99a9ad;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f5e831;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .home-section {
+            padding: 4rem 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .home-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #7791aa;
+            text-shadow: 1px 1px 2px rgba(39, 33, 33, 0.1);
+        }
+
+        .home-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(102, 89, 89, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .home-img:hover {
+            transform: scale(1.05);
+        }
+
+        .about-section, .projects-section, .contact-section, .skills-section {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(184, 169, 169, 0.1);
+            margin: 2rem 0;
+            animation: slideUp 1s ease-in;
+            text-align: left;
+        }
+
+        .about-section h2, .projects-section h2, .contact-section h2, .skills-section h2 {
+            font-size: 2rem;
+            color: #496581;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            margin: 0.8rem 0;
+            color: #665d5d;
+        }
+
+        .about-section .info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-section .info p strong {
+            color: #587796;
+            width: 100px;
+        }
+
+        .about-section .who-am-i {
+            margin: 1.5rem 0;
+        }
+
+        .skills-section h3 {
+            font-size: 1.5rem;
+            color: #476583;
+            margin: 1rem 0;
+        }
+
+        .skill {
+            margin: 1rem 0;
+        }
+
+        .skill p {
+            font-size: 1rem;
+            color: #757779;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            background: #835757;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress {
+            background: #384249;
+            height: 100%;
+            transition: width 1s ease-in-out;
+        }
+
+        .projects-section .project {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #d8cdcd;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .projects-section .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(253, 250, 250, 0.1);
+        }
+
+        .projects-section .project img {
+            width: 200px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .projects-section .project div {
+            flex: 1;
+        }
+
+        .projects-section .project h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .projects-section .project p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .contact-section .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-section .contact-info p {
+            font-size: 1.1rem;
+            color: #555;
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-section .contact-info p strong {
+            color: #2c3e50;
+            width: 120px;
+        }
+
+        .contact-section .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-section .contact-form input,
+        .contact-section .contact-form textarea {
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-section .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-section .contact-form button {
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .contact-section .contact-form button:hover {
+            background: #e25c45;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .home-section h1 {
+                font-size: 2rem;
+            }
+
+            .about-section, .projects-section, .contact-section, .skills-section {
+                padding: 2rem;
+            }
+
+            .about-section h2, .projects-section h2, .contact-section h2, .skills-section h2 {
+                font-size: 1.8rem;
+            }
+
+            nav a {
+                margin: 0 0.8rem;
+                font-size: 1rem;
+            }
+
+            .projects-section .project {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .projects-section .project img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+            }
+
+            .contact-section .contact-info p strong {
+                width: 100px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Get In Touch</a>
+    </nav>
+
+    <div class="container home-section" id="home">
+        <h1>Welcome to My Portfolio</h1>
+        <img src="kadota.jpg" alt="Portfolio Image" class="home-img"> 
+    </div>
+
+    <div class="container" id="about">
+        <div class="about-section">
+            <h2>About Me</h2>
+            <div class="info">
+                <p><strong>Name:</strong> josephbrianquindaotundag</p>
+                <p><strong>Email:</strong> josephbrianquindaotundag@gmail.com</p>
+                <p><strong>From:</strong>  Mandaue City</p>
+            </div>
+            <div class="who-am-i">
+                <h3>Who Am I</h3>
+                <p>Im am an associate's degree BSIT- ACLC College Mandaue, with a strong foundation in relevant skills or coursework. Eager to start a career in CSR agent, photo editor, and photographer], bringing strong communication skills, a willingness to learn, and a drive to contribute meaningfully to team goals. Passionate about [specific interest related to the job], and ready to adapt quickly to a professional environment.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="skills">
+        <div class="skills-section">
+            <h2>Skills</h2>
+            <div class="technical-skills">
+                <h3>Technical Skills</h3>
+                <div class="skill">
+                    <p>HTML & CSS - 90%</p>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>JavaScript - 85%</p>
+                    <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>React - 80%</p>
+                    <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+                </div>
+            </div>
+            <div class="professional-skills">
+                <h3>Professional Skills</h3>
+                <div class="skill">
+                    <p>Communication - 95%</p>
+                    <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>Teamwork - 90%</p>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>Problem Solving - 85%</p>
+                    <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="projects">
+        <div class="projects-section">
+            <h2>My Projects</h2>
+            <div class="project">
+                
+                <div>
+                    <h3>CSR</h3>
+                    <p>Project One: A dedicated call center professional with over 1 year of experience in customer service. I specialize in handling inbound and outbound calls, resolving customer inquiries, and providing exceptional support. My expertise includes using CRM systems, managing high call volumes, and ensuring customer satisfaction through effective communication and problem-solving skills.</p>
+                </div>
+            </div>
+            <div class="project">
+                
+                <div>
+                    <h3>Photo Editor</h3>
+                    <p>Project Two: A passionate photographer with a keen eye for capturing moments that tell a story. Whether it's portraits, events, or landscapes, I strive to create images that resonate with emotion and authenticity. My approach combines technical proficiency with creative vision to deliver high-quality photographs tailored to my clients' needs.</p>
+                </div> 
+            </div>
+            <div class="project">
+                
+                <div>
+                    <h3>Photographer</h3>
+                    <p>Project Three: A skilled photo editor proficient in Adobe Photoshop and Lightroom. I specialize in enhancing images through color correction, retouching, and compositing to bring out the best in every photo. My goal is to transform raw images into polished visuals that meet the highest standards of quality and creativity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="contact">
+        <div class="contact-section">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p><strong>Location:</strong> Mandaue City</p>
+                <p><strong>Email:</strong> josephbrianquindaotundag@gmail.com</p>
+                <p><strong>Phone:</strong>09929481238</p>
+            </div>
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea placeholder="Message" required></textarea>
+                <button type="button">Send Message</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
